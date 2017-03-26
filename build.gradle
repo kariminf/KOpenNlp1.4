@@ -19,7 +19,7 @@
 
 // Java plugin to add support for Java
 apply plugin: 'java'
-apply plugin: 'jacoco'
+//apply plugin: 'jacoco'
 //For jitPack to build
 apply plugin: 'maven'
 
@@ -28,7 +28,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 // Release version
-version = '1.0.0'
+version = '1.4.2'
 
 ext.current_Date = getDate()
 
@@ -37,12 +37,12 @@ ext.current_Date = getDate()
 jar {
     manifest {
         attributes 'Created-By': System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')',
-                   "Specification-Title"    : "Sentence representator",
-                   "Specification-Version"  : version,
-                   "Specification-Vendor"   : "Kariminf",
-                   "Implementation-Title"   : "kariminf.sentrep",
-                   "Implementation-Version" : version + "-build" + current_Date ,
-                   "Implementation-Vendor"  : "Kariminf",
+                   //"Specification-Title"    : "Sentence representator",
+                   //"Specification-Version"  : version,
+                   //"Specification-Vendor"   : "Kariminf",
+                   //"Implementation-Title"   : "kariminf.sentrep",
+                   //"Implementation-Version" : version + "-build" + current_Date ,
+                   //"Implementation-Vendor"  : "Kariminf",
                    "Built-With": "gradle-${project.getGradle().getGradleVersion()}, groovy-${GroovySystem.getVersion()}",
                    "Build-Time": current_Date,
                    "Built-By": project.hasProperty('BF_USER') ? project.getProperty('BF_USER') : System.getProperty('user.name'),
@@ -63,23 +63,10 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.21'
+    
+    compile 'trove:trove:1.0.2'
+    compile 'net.sf.jwordnet:jwnl:1.3.3'
 
     testCompile 'junit:junit:4.12'
 }
 
-javadoc {    
-    source = sourceSets.main.allJava
-    options.memberLevel = JavadocMemberLevel.PRIVATE
-    //classpath = configurations.compile
-    destinationDir = file("docs")
-    failOnError false
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport
