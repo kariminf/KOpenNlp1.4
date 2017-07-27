@@ -11,4 +11,4 @@ Check the original project on [sourcefore](http://opennlp.sourceforge.net)
 
 ## License
 
-This version is under LGPL 2.1 license 
+This version is under LGPL 2.1 license
